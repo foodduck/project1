@@ -14,8 +14,9 @@
     <link rel="stylesheet" href="./css/reset.css">
     <link rel="stylesheet" href="./css/common.css">
     <style>
+    	.ment { margin:300px 0; text-align:center; }
          h2 { margin:200px 100px 0 100px; text-align:center; }
-        form { margin:40px 0 100px 850px; font-size:20px; }
+        form { margin:40px 0 100px 40px; font-size:20px; }
         .datalist { padding:15px; }
         .inputs { display:block; }
         button { width:120px; height:50px; color:white; background-color:rgb(161, 161, 161); border-radius:10px; font-size:16px; }
@@ -53,15 +54,18 @@
 			
 %>
 <%@ include file ="header.jsp"%>
+	<div class="ment">
  		<form action="findPwRs.jsp" class="frm" method="post" name="joinform" onsubmit="return joinCheck(this)">
         <div class="datalist">
 	        <label for="m_question" class="inputs">가입시 입력한 질문: <%=m_question %></label>
 	        <input type="text" id="m_answer" name="m_answer"  class="indata"  required>
+	        <input type="hidden" id="m_id" name="m_id" value=<%=m_id %>>
 	    </div>
  		<div class="datalist">
 	         <button type="submit" name="next" value="next" class="next_btn">조회</button>
 	    </div>
-</form>
+		</form>
+	</div>    
 <%@ include file ="footer.jsp"%>
 
 <%	

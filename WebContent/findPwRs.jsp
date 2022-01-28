@@ -29,6 +29,7 @@
 	response.setCharacterEncoding("UTF-8");
 
 	String m_answer = request.getParameter("m_answer");
+	String m_id = request.getParameter("m_id");
 	
 	Connection conn = null;
 	PreparedStatement stmt = null;
@@ -41,10 +42,11 @@
 	try {
 		Class.forName("oracle.jdbc.OracleDriver");
 		conn = DriverManager.getConnection(url, id, pw);
-		sql = "select pw from member1 where answer=?";
+		sql = "select pw from member1 where answer=? and id=?";
 		stmt = conn.prepareStatement(sql);
 		
 		stmt.setString(1, m_answer);
+		stmt.setString(2, m_id);
 		
 		rs = stmt.executeQuery();
 		if(rs.next()) {
@@ -54,7 +56,7 @@
 			 <!-- 본문 -->
        <div class="rs">
            <h2>당신의 비밀번호는 "<%=m_pw %>" 입니다.</h2>
-           <a href="login.html" class="btn">로그인 페이지로 돌아가기</a>
+           <a href="login.jsp" class="btn">로그인 페이지로 돌아가기</a>
        </div>
 <%@ include file ="footer.jsp"%>
 

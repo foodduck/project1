@@ -58,19 +58,19 @@
 	String id="system";
 	String pw="1234";
 	String sql;
-	int w_no2 = Integer.parseInt(request.getParameter("w_no"));
+	int b_no = Integer.parseInt(request.getParameter("b_no"));
 	try {
 		Class.forName("oracle.jdbc.OracleDriver");
 		conn = DriverManager.getConnection(url, id, pw);
 		sql = "select * from board1 where no=?";
 		stmt = conn.prepareStatement(sql);
-		stmt.setInt(1, w_no2);
+		stmt.setInt(1, b_no);
 		rs = stmt.executeQuery();
 
 		while (rs.next()) {
 			int n_no = rs.getInt("no");
-			String w_title = rs.getString("title");	
-			String w_content = rs.getString("content");
+			String b_title = rs.getString("title");	
+			String b_content = rs.getString("content");
 %>
    <!-- 글보기 -->
         <h2 class="tit">게시글 조회</h2>
@@ -82,7 +82,7 @@
                             <label for="title" >제목</label>
                         </th>
                         <td class="col_data">
-                            <input type="text" class="in_data" value=<%=w_title %>/>
+                            <input type="text" class="in_data" value=<%=b_title %>/>
                         </td>
                     </tr>
                     <tr>
@@ -90,7 +90,7 @@
                             <label for="content">글 내용</label>
                         </th>
                         <td class="col_data">
-                            <input type="text" class="in_data" value=<%=w_content %>/>
+                            <input type="text" class="in_data" value=<%=b_content %>/>
                         </td>
                     </tr>
                 </tbody>
